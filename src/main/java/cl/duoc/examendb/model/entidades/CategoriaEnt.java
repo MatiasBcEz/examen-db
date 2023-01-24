@@ -9,6 +9,8 @@ import jakarta.persistence.Id;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import cl.duoc.examendb.controller.Instrumento;
+
 import javax.persistence.*;
 import java.util.Collection;
 import lombok.Data;
