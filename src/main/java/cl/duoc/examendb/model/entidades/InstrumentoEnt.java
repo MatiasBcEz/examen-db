@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.Data;
 
 import javax.persistence.*;
@@ -22,17 +24,19 @@ public class InstrumentoEnt {
     @Column(name = "idInstrumento")
     private int idInstrumento;
 
-    @Basic
     @Column(name = "nombre")
     private String nombre;
 
-    @Basic
     @Column(name = "marca")
     private String marca;
 
-    @Basic
     @Column(name = "id_categoria")
     private String idCategoria;
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_categoria", referencedColumnName = "id", insertable = false, updatable = false)
+    @JsonBackReference
+    private CategoriaEnt categoriaByCategoriaIdFk;
 
     public InstrumentoEnt() {
     }

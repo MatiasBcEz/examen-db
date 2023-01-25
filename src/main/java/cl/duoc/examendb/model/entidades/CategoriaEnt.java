@@ -8,6 +8,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import cl.duoc.examendb.controller.Instrumento;
 
@@ -28,9 +29,9 @@ public class CategoriaEnt {
     @Column(name = "nombre")
     private String nombre;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name="id_categoria", referencedColumnName = "id" , insertable = false, updatable = false)
-    @JsonBackReference
+    @OneToMany(mappedBy = "categoriaByCategoriaIdFk", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @Column(nullable = true)
+    @JsonManagedReference
     private Collection<Instrumento> instrumentoByIdCategoria;
 
 }
