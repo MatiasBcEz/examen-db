@@ -1,18 +1,19 @@
 package cl.duoc.examendb.model.entidades;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Table;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import cl.duoc.examendb.controller.Instrumento;
 
-import javax.persistence.*;
 import java.util.Collection;
 import lombok.Data;
 
@@ -32,6 +33,6 @@ public class CategoriaEnt {
     @OneToMany(mappedBy = "categoriaByCategoriaIdFk", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @Column(nullable = true)
     @JsonManagedReference
-    private Collection<Instrumento> instrumentoByIdCategoria;
+    private Collection<InstrumentoEnt> instrumentoByIdCategoria;
 
 }
